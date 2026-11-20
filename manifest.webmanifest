@@ -18,6 +18,11 @@
     { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
     { "src": "icons/icon.svg", "sizes": "any", "type": "image/svg+xml" }
   ],
+  "screenshots": [
+    { "src": "store-assets/en-1-my-day.png", "sizes": "2160x1350", "type": "image/png", "form_factor": "wide", "label": "My Day with task details" },
+    { "src": "store-assets/en-2-planned.png", "sizes": "2160x1350", "type": "image/png", "form_factor": "wide", "label": "Planned tasks grouped by date" },
+    { "src": "store-assets/en-3-list-dark.png", "sizes": "2160x1350", "type": "image/png", "form_factor": "wide", "label": "A custom list in dark mode" }
+  ],
   "shortcuts": [
     { "name": "My Day", "url": "./#my-day", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] },
     { "name": "Planned", "url": "./#planned", "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }] }
