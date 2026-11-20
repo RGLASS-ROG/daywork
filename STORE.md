@@ -1,31 +1,53 @@
 # Daywork in den App-Stores – Fahrplan
 
-Stand: 20.11.2026. Reihenfolge: erst online stellen, dann Microsoft Store, dann Google Play, Apple zuletzt.
+Stand: 20.11.2026. Reihenfolge: Microsoft Store zuerst, dann Google Play, Apple zuletzt.
 
-## 0. Vor dem Veröffentlichen (Pflicht)
+- App online: <https://rglass-rog.github.io/daywork/>
+- Datenschutz: <https://rglass-rog.github.io/daywork/privacy.html>
+- Repository: <https://github.com/RGLASS-ROG/daywork>
+- Screenshots: Ordner `store-assets/` (2160×1350, je 4× EN und DE)
+
+## 0. Vor dem Einreichen (Pflicht)
 
 - [ ] **Kontaktdaten** in `privacy.html` eintragen: Name, Anschrift, E-Mail (je zweimal: EN und DE, insgesamt 6 Stellen `[NAME]`, `[POSTAL ADDRESS]`/`[ANSCHRIFT]`, `[E-MAIL]`).
       Tipp: eine eigene E-Mail-Adresse nur für die App anlegen (z. B. daywork.app@…).
 - [x] Schriften: Die App nutzt die Systemschrift (Segoe UI unter Windows), kein Google Fonts mehr.
 - [ ] Markenrecherche „Daywork“ für Software (Klasse 9 und 42): <https://register.dpma.de>, <https://euipo.europa.eu/eSearch>, <https://tmsearch.uspto.gov>
-- [ ] Repository auf GitHub anlegen (öffentlich), GitHub Pages einschalten → Adresse z. B. `https://rglass-rog.github.io/daywork/`
+- [x] Repository auf GitHub angelegt, GitHub Pages eingeschaltet
 
-## 1. Microsoft-Anmeldung für alle öffnen
+## 1. Microsoft-Anmeldung einrichten (damit OneDrive-Sync funktioniert)
 
-1. App-Registrierung in <https://entra.microsoft.com> anlegen oder umbenennen: Name **Daywork**.
-2. Kontotypen: **beliebiges Organisationsverzeichnis + persönliche Microsoft-Konten**.
-3. SPA-Umleitungs-URIs: `http://localhost:5173/` und die GitHub-Pages-Adresse (mit `/` am Ende).
-4. Client-ID in `config.js` eintragen, committen, pushen.
-5. Unter **Branding & Eigenschaften**: Logo, Startseite (GitHub-Pages-Adresse), Link zur Datenschutzerklärung (`…/privacy.html`).
+Ohne diesen Schritt läuft die Store-App nur lokal („Nur lokal“). Dauert ca. 10 Minuten.
+
+1. <https://entra.microsoft.com> öffnen, mit deinem Microsoft-Konto anmelden.
+   Meldet das Portal, dass ein Verzeichnis fehlt: kostenloses Azure-Konto unter <https://azure.microsoft.com/free> anlegen.
+2. **Identität → Anwendungen → App-Registrierungen → Neue Registrierung**
+   - Name: **Daywork**
+   - Unterstützte Kontotypen: **Konten in einem beliebigen Organisationsverzeichnis und persönliche Microsoft-Konten**
+   - Umleitungs-URI: Plattform **Single-Page-Anwendung (SPA)**, `https://rglass-rog.github.io/daywork/`
+3. Danach unter **Authentifizierung → URI hinzufügen**: `http://localhost:5173/` (für lokale Tests).
+4. Unter **Branding & Eigenschaften**: Startseite `https://rglass-rog.github.io/daywork/`, Datenschutz-URL `https://rglass-rog.github.io/daywork/privacy.html`, Logo `icons/icon-512.png` (max. 100 KB).
+5. Auf der Übersichtsseite die **Anwendungs-ID (Client-ID)** kopieren und mir geben. Ich trage sie in `config.js` ein und veröffentliche das.
 6. Optional später: **Herausgeber-Verifizierung** (braucht ein Microsoft-Partner-Konto). Ohne sie steht beim Login „nicht verifiziert“.
 
 ## 2. Microsoft Store (kostenlos für Privatpersonen)
 
-1. Entwicklerkonto: <https://storedeveloper.microsoft.com> → „Individual developer“.
-2. In Partner Center einen App-Namen reservieren: **Daywork**.
-3. <https://www.pwabuilder.com> → GitHub-Pages-Adresse eingeben → **Windows** → Paket erzeugen
-   (Publisher-Daten aus Partner Center einfügen).
-4. Paket (.msixbundle) in Partner Center hochladen, Store-Texte und Screenshots (siehe unten) eintragen, Datenschutz-URL angeben, zur Prüfung einreichen. Die Prüfung dauert meist 1 bis 3 Tage.
+1. **Entwicklerkonto anlegen:** <https://storedeveloper.microsoft.com> → **Individual developer** → mit Microsoft-Konto anmelden, Identität bestätigen (Ausweis + Selfie über den Prüfdienst). Die Freischaltung dauert meist einige Stunden bis wenige Tage.
+2. **Namen reservieren:** In <https://partner.microsoft.com/dashboard> → **Apps und Spiele → Neues Produkt → MSIX- oder PWA-App** → Name **Daywork** reservieren.
+3. **Paketdaten notieren:** Beim Produkt unter **Produktverwaltung → Produktidentität** stehen drei Werte:
+   *Package/Identity/Name*, *Package/Identity/Publisher* (beginnt mit `CN=`) und *Package/Properties/PublisherDisplayName*.
+4. **Paket bauen:** <https://www.pwabuilder.com> → `https://rglass-rog.github.io/daywork/` eingeben → **Package for stores → Windows → Generate Package**.
+   Die drei Werte aus Schritt 3 eintragen, Version `1.0.0.0`. Ergebnis: eine ZIP-Datei mit `.msixbundle` und `.classic.appxbundle`.
+   (PWABuilder hatte am 20.11.2026 Wartungsarbeiten; laut Entwicklern soll es noch am selben Tag wieder laufen.)
+5. **Einreichung ausfüllen** (Partner Center → Daywork → **Einreichung starten**):
+   - *Preise und Verfügbarkeit:* kostenlos, alle Märkte
+   - *Eigenschaften:* Kategorie **Produktivität**, Datenschutz-URL (siehe oben), Website `https://rglass-rog.github.io/daywork/`, Support-Kontakt = deine App-E-Mail
+   - *Altersfreigaben:* IARC-Fragebogen (keine Gewalt, keine Käufe, keine Nutzerinteraktion → „ab 3 / Everyone“)
+   - *Pakete:* beide Dateien aus der ZIP hochladen
+   - *Store-Einträge:* **Englisch (USA)** und **Deutsch**, je Beschreibung, Kurzbeschreibung, Stichwörter (unten) und Screenshots aus `store-assets/` (`en-*` bzw. `de-*`)
+6. **Einreichen.** Die Prüfung dauert meist 1 bis 3 Werktage. Danach ist Daywork im Store unter dem reservierten Namen zu finden.
+
+**Updates:** Weil die Store-App die Website lädt, kommen Änderungen per `git push` sofort bei allen an. Ein neues Paket ist nur nötig, wenn sich Name, Icon oder Manifest-Grundlegendes ändert.
 
 ## 3. Google Play (25 $ einmalig)
 
