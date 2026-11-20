@@ -560,7 +560,7 @@ function renderSuggest(d) {
 
 /* ---------- sync pill & settings ---------- */
 const SYNC_LABEL = {
-  unconfigured: ['cloud-off', T('Nur lokal'), ''], 'signed-out': ['cloud-off', T('Nicht verbunden'), ''],
+  unconfigured: ['gear', T('Einstellungen'), ''], 'signed-out': ['cloud-off', T('Nicht verbunden'), ''],
   syncing: ['sync', T('Synchronisiert …'), 'busy'], ok: ['cloud', 'OneDrive', 'ok'], offline: ['cloud-off', 'Offline', ''],
   error: ['cloud-off', T('Sync-Fehler'), 'err'], 'needs-login': ['cloud-off', T('Anmelden'), 'err'],
 };
@@ -577,7 +577,8 @@ function renderSettings(d) {
     h('div', { class: 'sugg-head' }, h('h3', {}, T('Einstellungen')), h('button', { class: 'icon-btn', 'aria-label': T('Einstellungen schließen'), onclick: closePanel }, ic('x'))));
 
   // --- OneDrive
-  body.append(h('div', { class: 'sec' }, 'OneDrive'));
+  // (hidden while no client ID is configured – this version then works on the device only)
+  const odSec = h('div', { class: 'sec' }, 'OneDrive');
   const od = h('div', { class: 'card' });
   if (Cloud.state === 'unconfigured') {
     od.append(h('p', {}, T('Daywork speichert gerade nur auf diesem Gerät. In dieser Version ist die OneDrive-Synchronisierung nicht eingerichtet.')));
@@ -595,7 +596,7 @@ function renderSettings(d) {
         Cloud.state === 'needs-login' ? h('button', { class: 'btn acc', onclick: () => Cloud.login() }, T('Neu anmelden')) : h('button', { class: 'btn acc', onclick: () => Cloud.sync() }, T('Jetzt synchronisieren')),
         h('button', { class: 'btn plain', onclick: () => Cloud.logout() }, T('Abmelden'))));
   }
-  body.append(od);
+  if (Cloud.state !== 'unconfigured') body.append(odSec, od);
 
   // --- reminders
   body.append(h('div', { class: 'sec' }, T('Erinnerungen')));
@@ -640,7 +641,9 @@ function renderSettings(d) {
   // --- about
   body.append(h('div', { class: 'sec' }, T('Info')));
   body.append(h('div', { class: 'card' },
-    h('p', {}, T('Daywork speichert deine Aufgaben auf deinem Gerät und in deinem eigenen OneDrive. Es gibt keinen Daywork-Server.')),
+    h('p', {}, Cloud.state === 'unconfigured'
+      ? T('Daywork speichert deine Aufgaben nur auf deinem Gerät. Kein Konto, kein Server, kein Tracking.')
+      : T('Daywork speichert deine Aufgaben auf deinem Gerät und in deinem eigenen OneDrive. Es gibt keinen Daywork-Server.')),
     h('div', { class: 'btns' }, h('a', { class: 'btn plain', href: 'privacy.html', target: '_blank', rel: 'noopener' }, T('Datenschutz & Impressum')))));
   d.replaceChildren(h('div', { class: 'd-inner' }, body));
 }

@@ -68,12 +68,14 @@ Ohne diesen Schritt läuft die Store-App nur lokal („Nur lokal“). Dauert ca.
 - **Geld verlangen:** Gewerbe anmelden, Einnahmen versteuern (Kleinunternehmerregelung prüfen). Die Stores behalten 15 % (kleine Entwickler) bis 30 % ein.
 - Kein Microsoft-Logo und nicht „Microsoft To Do“ im Namen oder Icon. „Syncs with OneDrive“ als Beschreibung ist in Ordnung.
 
-## Store-Texte
+## Store-Texte (Version 1.0, ohne OneDrive-Sync)
+
+Sobald der Sync eingerichtet ist, kommen die Zeilen unter „Später ergänzen“ dazu.
 
 ### English
 
 **Name:** Daywork – Tasks & Reminders
-**Short description (80 characters):** Simple to-do lists with My Day and reminders, synced via your own OneDrive.
+**Short description (80 characters):** Simple, private to-do lists with My Day, reminders and quick entry.
 
 **Description:**
 Daywork is a clean, fast to-do app that keeps your tasks where they belong: with you.
@@ -82,20 +84,22 @@ Daywork is a clean, fast to-do app that keeps your tasks where they belong: with
 • Important, Planned and custom lists with colors and emoji
 • Steps, notes, due dates, reminders and repeating tasks
 • Quick entry: type “Call dentist tomorrow at 9am !” and Daywork sets the date, reminder and star
+• Works offline, light and dark theme, English and German
+• Backup and restore: move your tasks to another device with a single file
+
+Privacy first: no account, no server, no ads, no tracking. Your tasks are stored only on your device.
+
+**Keywords:** to-do, tasks, checklist, reminders, planner, my day, productivity, offline
+
+*Später ergänzen (mit Sync):*
 • Sync across all your devices through your own Microsoft OneDrive
 • Optional: reminders as Outlook calendar events, so you're notified even when the app is closed
-• Works offline, light and dark theme, English and German
-
-Privacy first: there is no Daywork server and no account with us. Your tasks are stored on your device and in a private app folder in your OneDrive. No ads, no tracking.
-
 Daywork is an independent app and is not affiliated with Microsoft.
-
-**Keywords:** to-do, tasks, checklist, reminders, planner, my day, onedrive, productivity
 
 ### Deutsch
 
 **Name:** Daywork – Aufgaben & Erinnerungen
-**Kurzbeschreibung (80 Zeichen):** Aufgabenlisten mit „Mein Tag“ und Erinnerungen, synchron über dein OneDrive.
+**Kurzbeschreibung (80 Zeichen):** Einfache, private Aufgabenlisten mit „Mein Tag“, Erinnerungen und Schnelleingabe.
 
 **Beschreibung:**
 Daywork ist eine übersichtliche, schnelle Aufgaben-App, und deine Aufgaben bleiben bei dir.
@@ -104,14 +108,18 @@ Daywork ist eine übersichtliche, schnelle Aufgaben-App, und deine Aufgaben blei
 • Wichtig, Geplant und eigene Listen mit Farben und Emoji
 • Schritte, Notizen, Fälligkeiten, Erinnerungen und Wiederholungen
 • Schnelleingabe: „Zahnarzt anrufen morgen um 9 !“ setzt Datum, Erinnerung und Stern
+• Funktioniert offline, helles und dunkles Design, Deutsch und Englisch
+• Sichern und Einspielen: Aufgaben mit einer einzigen Datei auf ein anderes Gerät mitnehmen
+
+Datenschutz zuerst: kein Konto, kein Server, keine Werbung, kein Tracking. Deine Aufgaben liegen nur auf deinem Gerät.
+
+**Stichwörter:** Aufgaben, To-do, Checkliste, Erinnerungen, Planer, Mein Tag, Produktivität, offline
+
+*Später ergänzen (mit Sync):*
 • Abgleich über alle Geräte mit deinem eigenen Microsoft OneDrive
 • Optional: Erinnerungen als Outlook-Termine, damit du auch bei geschlossener App benachrichtigt wirst
-• Funktioniert offline, helles und dunkles Design, Deutsch und Englisch
-
-Datenschutz zuerst: Es gibt keinen Daywork-Server und kein Konto bei uns. Deine Aufgaben liegen auf deinem Gerät und in einem privaten App-Ordner in deinem OneDrive. Keine Werbung, kein Tracking.
-
 Daywork ist eine unabhängige App und steht in keiner Verbindung zu Microsoft.
 
 ### Screenshots
 
-Benötigt: mindestens 2 (Google: Handy 16:9 oder 9:16; Microsoft: 1366×768 oder größer). Am besten mit Beispieldaten auf Englisch und auf Deutsch aufnehmen.
+Fertig im Ordner `store-assets/` (2160×1350): `en-1` bis `en-4` für den englischen, `de-1` bis `de-4` für den deutschen Eintrag. Microsoft verlangt mindestens 1, empfohlen sind 4.

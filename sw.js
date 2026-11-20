@@ -1,5 +1,5 @@
 // Daywork Service Worker: App offline verfügbar machen, Klick auf Benachrichtigung.
-const VERSION = 'daywork-v4';
+const VERSION = 'daywork-v5';
 const SHELL = ['./', 'index.html', 'privacy.html', 'styles.css', 'i18n.js', 'config.js', 'store.js', 'cloud.js', 'app.js',
   'vendor/msal-browser.min.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'];
 

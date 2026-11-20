@@ -116,6 +116,8 @@ const EN = {
   'Sicherungen kannst du herunterladen und auf jedem Gerät wieder einspielen.': 'You can download a backup and restore it on any device.',
   'Sicherung herunterladen': 'Download backup', 'Sicherung einspielen': 'Restore backup',
   'Info': 'About', 'Datenschutz & Impressum': 'Privacy & legal notice',
+  'Daywork speichert deine Aufgaben nur auf deinem Gerät. Kein Konto, kein Server, kein Tracking.':
+    'Daywork stores your tasks on your device only. No account, no server, no tracking.',
   'Daywork speichert deine Aufgaben auf deinem Gerät und in deinem eigenen OneDrive. Es gibt keinen Daywork-Server.':
     'Daywork stores your tasks on your device and in your own OneDrive. There is no Daywork server.',
   // reminders, toasts

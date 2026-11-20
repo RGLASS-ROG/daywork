@@ -2,7 +2,7 @@
   "id": "./",
   "name": "Daywork",
   "short_name": "Daywork",
-  "description": "Tasks, lists and reminders, synced through your own OneDrive. No account with us, no server, no tracking.",
+  "description": "Simple, private to-do lists with My Day, reminders and quick entry. Works offline. No account, no server, no tracking.",
   "lang": "en",
   "dir": "ltr",
   "start_url": "./",
