@@ -1,62 +1,70 @@
-# Tagwerk
+# Daywork
 
-Aufgaben-App als Ersatz für Microsoft To Do. Mein Tag, Wichtig, Geplant, eigene Listen, Schritte,
-Erinnerungen, Wiederholungen, Notizen, Schnelleingabe („Zahnarzt morgen um 9 !“).
-Die Daten liegen lokal auf jedem Gerät und werden über **deinen OneDrive** abgeglichen
-(Datei `Apps/Tagwerk/tagwerk.json`). Einen eigenen Server gibt es nicht.
+A simple, fast to-do app: My Day, Important, Planned, custom lists, steps, reminders, repeating tasks,
+notes and natural quick entry (“Call dentist tomorrow at 9am !”). English and German.
 
-## Lokal starten
+Your data stays on your device and, if you sign in, is synced through **your own OneDrive**
+(file `Apps/Daywork/daywork.json`). There is no Daywork server, no account with us and no tracking.
+
+Privacy policy and legal notice: [privacy.html](privacy.html)
+
+## Run locally
 
 ```powershell
 node serve.js
 ```
 
-Dann <http://localhost:5173/> öffnen. Ohne Client-ID läuft Tagwerk nur lokal im Browser.
+Then open <http://localhost:5173/>. Without a client ID, Daywork runs locally in the browser only.
 
-## OneDrive anbinden (einmalig, ca. 5 Minuten)
+## Connect OneDrive (one-time, about 5 minutes)
 
-1. <https://entra.microsoft.com> öffnen und mit deinem Microsoft-Konto anmelden.
-   Falls das Portal meldet, dass dir ein Verzeichnis fehlt: unter <https://azure.microsoft.com/free>
-   ein kostenloses Azure-Konto anlegen. Das kostet nichts, Microsoft verlangt aber eine Kreditkarte zur Identitätsprüfung.
-2. **Identität → Anwendungen → App-Registrierungen → Neue Registrierung**
-   - Name: `Tagwerk`
-   - Unterstützte Kontotypen: **Konten in einem beliebigen Organisationsverzeichnis und persönliche Microsoft-Konten**
-   - Umleitungs-URI: Plattform **Single-Page-Anwendung (SPA)**, Adresse `http://localhost:5173/`
-3. Auf der Übersichtsseite die **Anwendungs-ID (Client-ID)** kopieren und in `config.js` bei `clientId` eintragen.
-4. Optional unter **API-Berechtigungen → Berechtigung hinzufügen → Microsoft Graph → Delegiert**:
-   `Files.ReadWrite.AppFolder` und `Calendars.ReadWrite`. Ohne diesen Schritt fragt Tagwerk die Berechtigungen bei der Anmeldung selbst ab.
-5. Tagwerk neu laden, unten links auf den Sync-Knopf klicken und dann auf **Mit Microsoft anmelden**.
+1. Open <https://entra.microsoft.com> and sign in with your Microsoft account.
+   If the portal says you have no directory, create a free Azure account at <https://azure.microsoft.com/free>.
+2. **Identity → Applications → App registrations → New registration**
+   - Name: `Daywork`
+   - Supported account types: **Accounts in any organizational directory and personal Microsoft accounts**
+   - Redirect URI: platform **Single-page application (SPA)**, `http://localhost:5173/`
+3. Copy the **Application (client) ID** from the overview page into `config.js` as `clientId`.
+4. Optional: **API permissions → Add a permission → Microsoft Graph → Delegated**:
+   `Files.ReadWrite.AppFolder` and `Calendars.ReadWrite`. Otherwise Daywork asks for them at sign-in.
+5. Reload Daywork, click the sync button at the bottom left, then **Sign in with Microsoft**.
 
-Tagwerk sieht nur seinen eigenen App-Ordner in deinem OneDrive, keine anderen Dateien.
-Die Client-ID ist kein Geheimnis und darf öffentlich im Code stehen.
+Daywork can only see its own app folder in your OneDrive, no other files.
+The client ID is not a secret and may be public.
 
-## Im Internet bereitstellen (für das Handy)
+## Deploy (GitHub Pages)
 
-Zum Beispiel kostenlos über GitHub Pages: Repository veröffentlichen, unter *Settings → Pages* den Branch
-`main` freigeben und dann die Adresse `https://<benutzer>.github.io/<repo>/` in der App-Registrierung als
-**weitere SPA-Umleitungs-URI** eintragen (mit Schrägstrich am Ende).
-Auf dem Handy die Seite öffnen und **Zum Startbildschirm hinzufügen** wählen.
+Enable *Settings → Pages* for branch `main`, then add `https://<user>.github.io/<repo>/` (with trailing slash)
+as an additional **SPA redirect URI** in the app registration.
+On a phone, open the page and choose **Add to Home Screen**.
 
-## Erinnerungen
+## Reminders
 
-- Solange Tagwerk geöffnet ist (auch im Hintergrund), kommen Benachrichtigungen vom Browser bzw. Betriebssystem.
-- Ist Tagwerk geschlossen, kann eine Web-App ohne eigenen Server keine Nachrichten zustellen. Dafür gibt es in den
-  Einstellungen **In Outlook-Kalender eintragen**: Jede Erinnerung wird als 15-Minuten-Termin mit Alarm
-  (Kategorie „Tagwerk“) in deinem Outlook-Kalender angelegt. Outlook erinnert dich dann auf allen Geräten.
-  Erledigte oder gelöschte Aufgaben räumen ihren Termin selbst wieder weg.
+- While Daywork is open (also in the background), notifications come from the browser or operating system.
+- When Daywork is closed, a web app without a server cannot deliver notifications. For that, turn on
+  **Add to Outlook calendar** in the settings: each reminder becomes a 15-minute event with an alert in your
+  Outlook calendar (category “Daywork”), so Outlook reminds you on all devices.
+  Completed or deleted tasks remove their event again.
 
-## Wie der Abgleich funktioniert
+## How sync works
 
-Jede Liste und Aufgabe trägt einen Zeitstempel. Beim Abgleich werden lokaler und OneDrive-Stand pro Eintrag
-zusammengeführt, und der neuere gewinnt. Gelöschtes bleibt 60 Tage als Markierung erhalten, damit andere Geräte es
-mitbekommen. Schreibkonflikte erkennt Tagwerk über das eTag der Datei und führt den Abgleich dann neu aus.
+Every list and task carries a timestamp. Local and OneDrive data are merged per item, and the newer one wins.
+Deleted items are kept as tombstones for 60 days so other devices learn about them. Write conflicts are detected
+through the file's eTag, and the merge is then repeated.
 
-## Dateien
+## Files
 
-| Datei | Inhalt |
+| File | Purpose |
 |---|---|
-| `index.html`, `styles.css`, `app.js` | Oberfläche |
-| `store.js` | lokaler Speicher, Zusammenführen |
-| `cloud.js` | Anmeldung (MSAL), OneDrive-Abgleich, Outlook-Termine |
-| `sw.js`, `manifest.webmanifest`, `icons/` | installierbare App, offline nutzbar |
+| `index.html`, `styles.css`, `app.js` | user interface |
+| `i18n.js` | English/German texts, migration from the former name “Tagwerk” |
+| `store.js` | local storage, merging |
+| `cloud.js` | sign-in (MSAL), OneDrive sync, Outlook events |
+| `sw.js`, `manifest.webmanifest`, `icons/` | installable app, works offline |
+| `privacy.html` | privacy policy and legal notice (EN/DE) |
 | `vendor/msal-browser.min.js` | Microsoft Authentication Library 3.30.0 (MIT) |
+
+## License
+
+© 2026. All rights reserved. The source code is visible for transparency; it is not licensed for reuse.
+Third-party components keep their own licenses (see `vendor/msal-LICENSE`).

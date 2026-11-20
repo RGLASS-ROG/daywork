@@ -3,7 +3,7 @@
 // ({id, deleted:true, updatedAt}) erhalten, bis alle Geräte es gesehen haben.
 (() => {
 'use strict';
-const KEY = 'tagwerk:data';
+const KEY = 'daywork:data';
 const TOMBSTONE_TTL = 60 * 864e5; // 60 Tage
 
 const Local = {
@@ -62,5 +62,5 @@ function differs(a, b) {
   return false;
 }
 
-window.TagwerkStore = { Local, mergeData, purgeTombstones, differs };
+window.DayworkStore = { Local, mergeData, purgeTombstones, differs };
 })();

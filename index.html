@@ -1,9 +1,9 @@
 <!doctype html>
-<html lang="de">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Tagwerk</title>
+<title>Daywork</title>
 <meta name="description" content="Aufgaben, Listen und Erinnerungen – synchronisiert über dein OneDrive.">
 <meta name="theme-color" content="#18202e">
 <link rel="manifest" href="manifest.webmanifest">
@@ -47,36 +47,37 @@
 <div class="app" id="app" data-acc>
   <div class="scrim" id="scrim"></div>
   <aside class="rail" id="rail" data-acc style="--acc:#2b59c3">
-    <div class="brand"><span class="mark"><span class="ic"><svg><use href="#i-check"/></svg></span></span>Tagwerk</div>
-    <label class="search"><span class="ic"><svg><use href="#i-search"/></svg></span><input id="q" type="search" placeholder="Suchen  ( / )" aria-label="Aufgaben durchsuchen" autocomplete="off"></label>
-    <nav class="nav" id="nav" aria-label="Listen"></nav>
+    <div class="brand"><span class="mark"><span class="ic"><svg><use href="#i-check"/></svg></span></span>Daywork</div>
+    <label class="search"><span class="ic"><svg><use href="#i-search"/></svg></span><input id="q" type="search" placeholder="Suchen  ( / )" aria-label="Aufgaben durchsuchen" data-i18n-ph="Suchen  ( / )" data-i18n-aria="Aufgaben durchsuchen" autocomplete="off"></label>
+    <nav class="nav" id="nav" aria-label="Listen" data-i18n-aria="nav.lists"></nav>
     <div class="rail-foot">
-      <button class="btn-ghost strong grow" id="newList"><span class="ic"><svg><use href="#i-plus"/></svg></span>Neue Liste</button>
-      <button class="sync-pill" id="syncPill" title="Synchronisierung und Einstellungen"></button>
+      <button class="btn-ghost strong grow" id="newList"><span class="ic"><svg><use href="#i-plus"/></svg></span><span data-i18n="Neue Liste">Neue Liste</span></button>
+      <button class="sync-pill" id="syncPill" title="Synchronisierung und Einstellungen" data-i18n-title="Synchronisierung und Einstellungen"></button>
     </div>
   </aside>
 
   <main class="main" id="main" data-acc>
     <header class="head">
-      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Listen anzeigen"><span class="ic"><svg><use href="#i-menu"/></svg></span></button>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Listen anzeigen" data-i18n-aria="Listen anzeigen"><span class="ic"><svg><use href="#i-menu"/></svg></span></button>
       <div class="head-titles" id="headTitles"></div>
       <div class="head-tools" id="headTools"></div>
     </header>
     <div class="scroll" id="scroll">
       <div id="banner"></div>
       <form class="add" id="addForm" autocomplete="off">
-        <div class="add-row"><span class="ic"><svg><use href="#i-plus"/></svg></span><input id="addInput" placeholder="Aufgabe hinzufügen" aria-label="Aufgabe hinzufügen" enterkeyhint="done"></div>
+        <div class="add-row"><span class="ic"><svg><use href="#i-plus"/></svg></span><input id="addInput" placeholder="Aufgabe hinzufügen" aria-label="Aufgabe hinzufügen" data-i18n-aria="Aufgabe hinzufügen" enterkeyhint="done"></div>
         <div class="chips" id="addChips" hidden></div>
       </form>
       <div id="list"></div>
     </div>
   </main>
 
-  <aside class="detail" id="detail" data-acc aria-label="Details"></aside>
+  <aside class="detail" id="detail" data-acc aria-label="Details" data-i18n-aria="Details"></aside>
 </div>
 <div class="toasts" id="toasts" aria-live="polite"></div>
 <input type="file" id="importFile" accept=".json,application/json" hidden>
 
+<script src="i18n.js"></script>
 <script src="config.js"></script>
 <script src="vendor/msal-browser.min.js"></script>
 <script src="store.js"></script>

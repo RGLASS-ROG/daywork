@@ -2,13 +2,14 @@
 // Outlook-Kalender-Erinnerungen. Anmeldung über MSAL (Auth-Code-Flow mit PKCE).
 (() => {
 'use strict';
-const { Local, mergeData, purgeTombstones, differs } = window.TagwerkStore;
-const CFG = window.TAGWERK_CONFIG || {};
+const { Local, mergeData, purgeTombstones, differs } = window.DayworkStore;
+const { T } = window.I18N;
+const CFG = window.DAYWORK_CONFIG || {};
 const GRAPH = 'https://graph.microsoft.com/v1.0';
-const FILE = '/me/drive/special/approot:/tagwerk.json';
+const FILE = '/me/drive/special/approot:/daywork.json';
 const FILE_SCOPES = ['Files.ReadWrite.AppFolder'];
 const CAL_SCOPES = ['Calendars.ReadWrite'];
-const SETTINGS_KEY = 'tagwerk:settings';
+const SETTINGS_KEY = 'daywork:settings';
 
 const Settings = {
   get() { try { return JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; } catch { return {}; } },
@@ -27,7 +28,7 @@ const Cloud = {
 
   async init() {
     if (!CFG.clientId) return;
-    if (!window.msal) { this._set('error', 'Die Anmeldebibliothek konnte nicht geladen werden.'); return; }
+    if (!window.msal) { this._set('error', T('Die Anmeldebibliothek konnte nicht geladen werden.')); return; }
     try {
       this._pca = new msal.PublicClientApplication({
         auth: { clientId: CFG.clientId, authority: CFG.authority || 'https://login.microsoftonline.com/common', redirectUri: location.origin + location.pathname },
@@ -42,7 +43,7 @@ const Cloud = {
       else this._set('signed-out');
     } catch (e) {
       console.error(e);
-      this._set('error', 'Anmeldung fehlgeschlagen: ' + (e.errorMessage || e.message || e));
+      this._set('error', T('Anmeldung fehlgeschlagen: ') + (e.errorMessage || e.message || e));
     }
     window.addEventListener('online', () => this.schedule(300));
     window.addEventListener('focus', () => this.schedule(300));
@@ -105,7 +106,7 @@ const Cloud = {
           const put = await this._graph(FILE + ':/content', {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json', ...(etag ? { 'If-Match': etag } : { 'If-None-Match': '*' }) },
-            body: JSON.stringify({ app: 'tagwerk', version: 2, savedAt: new Date().toISOString(), lists: merged.lists, tasks: merged.tasks }),
+            body: JSON.stringify({ app: 'daywork', version: 2, savedAt: new Date().toISOString(), lists: merged.lists, tasks: merged.tasks }),
           });
           if (put.status === 412 || put.status === 409) continue; // anderes Gerät war schneller – neu laden
           if (!put.ok) throw await httpError(put);
@@ -116,13 +117,13 @@ const Cloud = {
         if (differs(next, Local.data)) Local.replace(next);
         done = true;
       }
-      if (!done) throw new Error('Zu viele gleichzeitige Änderungen, versuche es gleich noch einmal.');
+      if (!done) throw new Error(T('Zu viele gleichzeitige Änderungen, versuche es gleich noch einmal.'));
       this.lastSync = Date.now();
       this._set('ok');
       if (Settings.get().calendar) this.reconcileCalendar().catch(e => { this.calError = e.message || String(e); this._emit(); });
     } catch (e) {
       console.warn('Sync', e);
-      if (e.needsLogin) this._set('needs-login', 'Die Anmeldung ist abgelaufen.');
+      if (e.needsLogin) this._set('needs-login', T('Die Anmeldung ist abgelaufen.'));
       else if (!navigator.onLine) this._set('offline');
       else this._set('error', e.message || String(e));
     } finally {
@@ -160,10 +161,10 @@ const Cloud = {
           const start = new Date(t.remind), end = new Date(start.getTime() + 15 * 60000);
           const body = JSON.stringify({
             subject: '⏰ ' + t.title,
-            body: { contentType: 'text', content: 'Erinnerung aus Tagwerk' + (t.notes ? '\n\n' + t.notes : '') },
+            body: { contentType: 'text', content: T('Erinnerung aus Daywork') + (t.notes ? '\n\n' + t.notes : '') },
             start: { dateTime: start.toISOString().slice(0, 19), timeZone: 'UTC' },
             end: { dateTime: end.toISOString().slice(0, 19), timeZone: 'UTC' },
-            isReminderOn: true, reminderMinutesBeforeStart: 0, showAs: 'free', categories: ['Tagwerk'],
+            isReminderOn: true, reminderMinutesBeforeStart: 0, showAs: 'free', categories: [window.APP_NAME],
           });
           let r = null;
           if (t.cal && t.cal.id) r = await this._graph('/me/events/' + encodeURIComponent(t.cal.id), { method: 'PATCH', headers: { 'Content-Type': 'application/json' }, body }, CAL_SCOPES);
@@ -194,6 +195,6 @@ async function httpError(res) {
 }
 
 Local.on(kind => { if (kind === 'local') Cloud.schedule(); });
-window.TagwerkCloud = Cloud;
-window.TagwerkSettings = Settings;
+window.DayworkCloud = Cloud;
+window.DayworkSettings = Settings;
 })();

@@ -1,6 +1,6 @@
-// Tagwerk Service Worker: App offline verfügbar machen, Klick auf Benachrichtigung.
-const VERSION = 'tagwerk-v1';
-const SHELL = ['./', 'index.html', 'styles.css', 'config.js', 'store.js', 'cloud.js', 'app.js',
+// Daywork Service Worker: App offline verfügbar machen, Klick auf Benachrichtigung.
+const VERSION = 'daywork-v2';
+const SHELL = ['./', 'index.html', 'privacy.html', 'styles.css', 'i18n.js', 'config.js', 'store.js', 'cloud.js', 'app.js',
   'vendor/msal-browser.min.js', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png'];
 
 self.addEventListener('install', e => {

@@ -13,4 +13,4 @@ http.createServer((req, res) => {
     res.writeHead(200, { 'Content-Type': TYPES[path.extname(file)] || 'application/octet-stream', 'Cache-Control': 'no-cache' });
     res.end(buf);
   });
-}).listen(PORT, () => console.log(`Tagwerk läuft auf http://localhost:${PORT}/`));
+}).listen(PORT, () => console.log(`Daywork läuft auf http://localhost:${PORT}/`));
