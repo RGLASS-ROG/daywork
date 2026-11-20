@@ -46,6 +46,15 @@ Ohne diesen Schritt läuft die Store-App nur lokal („Nur lokal“). Dauert ca.
    - *Store-Einträge:* **Englisch (USA)** und **Deutsch**, je Beschreibung, Kurzbeschreibung, Stichwörter (unten) und Screenshots aus `store-assets/` (`en-*` bzw. `de-*`)
 6. **Einreichen.** Die Prüfung dauert meist 1 bis 3 Werktage. Danach ist Daywork im Store unter dem reservierten Namen zu finden.
 
+**Paketdaten (Partner Center → Produktidentität), für jedes neue Paket wieder verwenden:**
+- Package ID: `RobertGlass.Daywork`
+- Publisher ID: `CN=F7F76DC9-7813-4EDE-A7A3-DFCB337189B9`
+- Publisher display name: `Robert Glass`
+- Store-ID: `9P6C898XWJX7`
+- In PWABuilder unter *All Settings → Language* **English und German** auswählen. Die Version muss bei jedem neuen Paket höher sein (1.0.1 war die erste).
+
+Hochladen im Partner Center: **Daywork.msixbundle** und **Daywork.classic.appxbundle**. Nicht hochladen: `Daywork.sideload.msix`, `install.ps1` und `utils/`, die sind nur zum lokalen Testen.
+
 **Updates:** Weil die Store-App die Website lädt, kommen Änderungen per `git push` sofort bei allen an. Ein neues Paket ist nur nötig, wenn sich Name, Icon oder Manifest-Grundlegendes ändert.
 
 ## 3. Google Play (25 $ einmalig)
