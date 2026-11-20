@@ -9,8 +9,7 @@ Stand: 20.11.2026. Reihenfolge: Microsoft Store zuerst, dann Google Play, Apple 
 
 ## 0. Vor dem Einreichen (Pflicht)
 
-- [ ] **Kontaktdaten** in `privacy.html` eintragen: Name, Anschrift, E-Mail (je zweimal: EN und DE, insgesamt 6 Stellen `[NAME]`, `[POSTAL ADDRESS]`/`[ANSCHRIFT]`, `[E-MAIL]`).
-      Tipp: eine eigene E-Mail-Adresse nur für die App anlegen (z. B. daywork.app@…).
+- [x] **Kontaktdaten** in `privacy.html` eingetragen (Support-E-Mail: daywork_rog@proton.me).
 - [x] Schriften: Die App nutzt die Systemschrift (Segoe UI unter Windows), kein Google Fonts mehr.
 - [ ] Markenrecherche „Daywork“ für Software (Klasse 9 und 42): <https://register.dpma.de>, <https://euipo.europa.eu/eSearch>, <https://tmsearch.uspto.gov>
 - [x] Repository auf GitHub angelegt, GitHub Pages eingeschaltet
@@ -41,7 +40,7 @@ Ohne diesen Schritt läuft die Store-App nur lokal („Nur lokal“). Dauert ca.
    (PWABuilder hatte am 20.11.2026 Wartungsarbeiten; laut Entwicklern soll es noch am selben Tag wieder laufen.)
 5. **Einreichung ausfüllen** (Partner Center → Daywork → **Einreichung starten**):
    - *Preise und Verfügbarkeit:* kostenlos, alle Märkte
-   - *Eigenschaften:* Kategorie **Produktivität**, Datenschutz-URL (siehe oben), Website `https://rglass-rog.github.io/daywork/`, Support-Kontakt = deine App-E-Mail
+   - *Eigenschaften:* Kategorie **Produktivität**, Datenschutz-URL (siehe oben), Website `https://rglass-rog.github.io/daywork/`, Support-Kontakt `daywork_rog@proton.me`
    - *Altersfreigaben:* IARC-Fragebogen (keine Gewalt, keine Käufe, keine Nutzerinteraktion → „ab 3 / Everyone“)
    - *Pakete:* beide Dateien aus der ZIP hochladen
    - *Store-Einträge:* **Englisch (USA)** und **Deutsch**, je Beschreibung, Kurzbeschreibung, Stichwörter (unten) und Screenshots aus `store-assets/` (`en-*` bzw. `de-*`)
