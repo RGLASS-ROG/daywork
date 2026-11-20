@@ -137,9 +137,9 @@ input.title:focus{border-bottom-color:var(--acc-ink)}
 .row + .row{border-top:1px solid var(--line)}
 .row.on{color:var(--acc-ink)}
 button.row:hover{background:var(--hover)}
-.row .lbl{flex:1;min-width:0}
+.row .lbl{flex:1;min-width:max-content}
 .row .val{color:var(--ink);font-size:13px}
-.row input[type=date],.row input[type=datetime-local],.row select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 8px;font-size:13.5px;max-width:100%;color:var(--ink)}
+.row input[type=date],.row input[type=datetime-local],.row select{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 8px;font-size:13.5px;max-width:100%;min-width:0;flex:0 1 auto;color:var(--ink)}
 .row .x{color:var(--muted);width:26px;height:26px;display:grid;place-items:center;border-radius:6px}
 .row .x:hover{background:var(--hover)}
 .quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 12px 44px}
