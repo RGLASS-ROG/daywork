@@ -64,6 +64,7 @@ Hochladen im Partner Center: **Daywork.msixbundle** und **Daywork.classic.appxbu
 3. Die Datei `assetlinks.json` aus dem PWABuilder-Paket nach `.well-known/assetlinks.json` ins Repository legen. Sonst zeigt die App eine Browser-Leiste.
    Bei GitHub Pages unter einem Unterpfad (`/daywork/`) funktioniert das **nicht**. Dafür braucht es entweder ein Repository `rglass-rog.github.io` oder eine eigene Domain (z. B. daywork.app, ca. 10–15 €/Jahr). Eine eigene Domain ist ohnehin zu empfehlen.
 4. Neue private Konten: **geschlossener Test mit mindestens 12 Testern über 14 Tage**, erst danach ist die Produktion freigegeben.
+   **Besser: Organisationskonto statt Privatkonto.** Für Organisationen gilt die Testpflicht nicht. Als Einzelunternehmer (Gewerbe angemeldet) zulässig. Voraussetzungen: Gewerbeanmeldung, **D-U-N-S-Nummer** (für Google-Entwickler kostenlos über Dun & Bradstreet, 1–4 Wochen Bearbeitung), geschäftliche Telefonnummer und Website.
 5. Formulare ausfüllen: Datensicherheit („keine Daten erhoben/geteilt“, Daten liegen beim Nutzer in OneDrive), Inhaltseinstufung, Zielgruppe (ab 13/18), Händlerstatus.
 
 ## 4. Apple App Store (99 $/Jahr) – später
