@@ -6,7 +6,7 @@ Stand: 20.11.2026. Reihenfolge: erst online stellen, dann Microsoft Store, dann 
 
 - [ ] **Kontaktdaten** in `privacy.html` eintragen: Name, Anschrift, E-Mail (je zweimal: EN und DE, insgesamt 6 Stellen `[NAME]`, `[POSTAL ADDRESS]`/`[ANSCHRIFT]`, `[E-MAIL]`).
       Tipp: eine eigene E-Mail-Adresse nur für die App anlegen (z. B. daywork.app@…).
-- [ ] **Schriften lokal einbinden** statt von Google Fonts laden (in Deutschland abgemahnt, weil dabei die IP-Adresse an Google geht). Die Datenschutzerklärung geht schon davon aus.
+- [x] Schriften: Die App nutzt die Systemschrift (Segoe UI unter Windows), kein Google Fonts mehr.
 - [ ] Markenrecherche „Daywork“ für Software (Klasse 9 und 42): <https://register.dpma.de>, <https://euipo.europa.eu/eSearch>, <https://tmsearch.uspto.gov>
 - [ ] Repository auf GitHub anlegen (öffentlich), GitHub Pages einschalten → Adresse z. B. `https://rglass-rog.github.io/daywork/`
 

@@ -3,8 +3,8 @@
   --bg:#f3f5f8; --surface:#ffffff; --rail:#e9edf3; --ink:#18202e; --muted:#5f6b7d; --line:#dde2ea;
   --hover:rgba(24,32,46,.05); --danger:#c0362c; --ok:#1f8a4c; --shadow:0 10px 30px rgba(20,30,50,.14);
   --mixw:0%; --soft:12%;
-  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --f-body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --f-display:"Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
+  --f-body:"Segoe UI Variable Text", "Segoe UI", system-ui, -apple-system, Roboto, sans-serif;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --bg:#0f1218; --surface:#171b23; --rail:#12161d; --ink:#e6e9ef; --muted:#97a1b2; --line:#272d38;
